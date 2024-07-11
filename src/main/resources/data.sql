@@ -13,7 +13,8 @@ nom VARCHAR(100) NOT NULL,
 --idHistoria_Context INT,
 --idFoto_Logo INT,
 --idCreador INT,
-id_consola INT
+id_consola INT,
+id_empresa INT
 );
 
 DROP TABLE CONSOLA;
@@ -99,8 +100,8 @@ INSERT INTO TIPUS_CONSOLA VALUES (1, 'Sobremesa' );
 INSERT INTO TIPUS_CONSOLA VALUES (2, 'Portatil' );
 INSERT INTO TIPUS_CONSOLA VALUES (3, 'Hibrida' );
 
-INSERT INTO VIDEOJOC VALUES (1, 'Super Mario Bros', 10 );
-INSERT INTO VIDEOJOC VALUES (3, 'Sonic The Hedgehog', 1);
+INSERT INTO VIDEOJOC VALUES (1, 'Super Mario Bros', 10, 1);
+INSERT INTO VIDEOJOC VALUES (3, 'Sonic The Hedgehog', 1, 2);
 --INSERT INTO VIDEOJOC VALUES (1, 'Super Mario Bros', 0, 1, 1, 10 );
 --INSERT INTO VIDEOJOC VALUES (2, 'Halo', 0, 1, 1, 8 );
 --INSERT INTO VIDEOJOC VALUES (3, 'Sonic The Hedgehog', 0, 1, 1, 1 );

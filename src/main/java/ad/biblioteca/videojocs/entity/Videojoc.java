@@ -23,4 +23,8 @@ public class Videojoc {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_consola")
     private Consola consola;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_empresa")
+    private Empresa empresa;
 }

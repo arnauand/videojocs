@@ -13,4 +13,6 @@ public class VideojocDTO {
     private String nom;
 
     private ConsolaDTO consola;
+
+    private EmpresaDTO empresa;
 }

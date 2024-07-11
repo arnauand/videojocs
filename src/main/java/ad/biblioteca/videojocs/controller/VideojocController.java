@@ -39,11 +39,26 @@ public class VideojocController {
         return ResponseEntity.ok(videojocsDTOS);
     }
 
-    @RequestMapping(value = "/getVideojocs/{idConsola}", method = RequestMethod.GET)
-    public ResponseEntity<VideojocDTO> getvideojocsConsola(@PathVariable int idConsola) {
+    @RequestMapping(value = "/getVideojocsConsola/{idConsola}", method = RequestMethod.GET)
+    public ResponseEntity<List<VideojocDTO>> getvideojocsConsola(@PathVariable int idConsola) {
         log.info("Inici getVideojocsConsola({})", idConsola);
-        Videojoc videojoc = videojocService.getVideojocsConsola(idConsola);
-        return ResponseEntity.ok(VideojocDTO.builder().id(videojoc.getId()).nom(videojoc.getNom()).consola(ConsolaDTO.builder().id(videojoc.getConsola().getId()).nom(videojoc.getConsola().getNom()).build()).build());
+        List<Videojoc> videojocs = videojocService.getVideojocsConsola(idConsola);
+        List<VideojocDTO> videojocsDTO = new ArrayList<VideojocDTO>();
+        for (Videojoc item: videojocs) {
+            videojocsDTO.add(VideojocDTO.builder()
+                                .id(item.getId())
+                                .nom(item.getNom())
+                                .consola(ConsolaDTO.builder()
+                                            .id(item.getConsola().getId())
+                                            .nom(item.getConsola().getNom())
+                                            .empresa(EmpresaDTO.builder()
+                                                    .id(item.getConsola().getEmpresa().getId())
+                                                    .nom(item.getConsola().getEmpresa().getNom()).build()).build())
+                                .empresa(EmpresaDTO.builder()
+                                        .id(item.getEmpresa().getId())
+                                        .nom(item.getEmpresa().getNom()).build()).build());
+        }
+        return ResponseEntity.ok(videojocsDTO);
     }
 
     @RequestMapping(value = "/getVideojoc/{idVideojoc}", method = RequestMethod.GET)
@@ -53,4 +68,25 @@ public class VideojocController {
         return ResponseEntity.ok(VideojocDTO.builder().id(videojoc.getId()).nom(videojoc.getNom()).build());
     }
 
+    @RequestMapping(value = "/getVideojocsEmpresa/{idEmpresa}", method = RequestMethod.GET)
+    public ResponseEntity<List<VideojocDTO>> getvideojocsEmpresa(@PathVariable int idEmpresa) {
+        log.info("Inici getVideojocsEmpresa({})", idEmpresa);
+        List<Videojoc> videojocs = videojocService.getVideojocsEmpresa(idEmpresa);
+        List<VideojocDTO> videojocsDTO = new ArrayList<VideojocDTO>();
+        for (Videojoc item: videojocs) {
+            videojocsDTO.add(VideojocDTO.builder()
+                                .id(item.getId())
+                                .nom(item.getNom())
+                                .consola(ConsolaDTO.builder()
+                                            .id(item.getConsola().getId())
+                                            .nom(item.getConsola().getNom())
+                                            .empresa(EmpresaDTO.builder()
+                                                        .id(item.getConsola().getEmpresa().getId())
+                                                        .nom(item.getConsola().getEmpresa().getNom()).build()).build())
+                                .empresa(EmpresaDTO.builder()
+                                            .id(item.getEmpresa().getId())
+                                            .nom(item.getEmpresa().getNom()).build()).build());
+        }
+        return ResponseEntity.ok(videojocsDTO);
+    }
 }

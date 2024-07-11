@@ -11,6 +11,8 @@ public interface Videojoc_Repository extends JpaRepository<Videojoc,Integer> {
 
 
     @Query("SELECT vid FROM Videojoc vid JOIN FETCH vid.consola con WHERE con.id = :idConsola")
-    Videojoc findByConsola(int idConsola);
+    List<Videojoc> findByConsola(int idConsola);
     //List<Videojoc> findByIdConsola(int idConsola);
+    @Query("SELECT vid FROM Videojoc vid JOIN FETCH vid.empresa emp JOIN FETCH vid.consola con WHERE emp.id = :idEmpresa")
+    List<Videojoc> findByEmpresa(int idEmpresa);
 }

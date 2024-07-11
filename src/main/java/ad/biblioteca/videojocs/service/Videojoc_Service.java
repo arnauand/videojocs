@@ -23,7 +23,7 @@ public class Videojoc_Service {
         log.info("Inici getVideojocs()");
         return videojoc_repository.findAll();
     }
-    public Videojoc getVideojocsConsola(int idConsola) {
+    public List<Videojoc> getVideojocsConsola(int idConsola) {
         log.info("Inici getVideojocsConsola({})", idConsola);
         return videojoc_repository.findByConsola(idConsola);
     }
@@ -31,5 +31,10 @@ public class Videojoc_Service {
     public Videojoc getVideojoc(int idVideojoc) {
         log.info("Inici getVideojoc({})", idVideojoc);
         return videojoc_repository.getReferenceById(idVideojoc);
+    }
+
+    public List<Videojoc> getVideojocsEmpresa(int idEmpresa) {
+        log.info("Inici getVideojocsEmpresa({})", idEmpresa);
+        return videojoc_repository.findByEmpresa(idEmpresa);
     }
 }
